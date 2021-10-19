@@ -73,4 +73,4 @@ events in every city.
 #### SCENARIO 1: SHOW A CHART WITH THE NUMBER OF UPCOMING EVENTS IN EACH CITY.
 Given: the user looks at an event
 When: the user clicks on the chart
-Then: the user will be able to see a chart showing upcoming events in each city separately
+Then: the user will be able to see a chart showing upcoming events in each city separately.
