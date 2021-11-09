@@ -1,28 +1,23 @@
-import React, { Component } from 'react';
-
+import React, { Component } from "react";
 
 class NumberOfEvents extends Component {
-
   state = {
-    numberOfEvents: 15,
-  }
-
-  handleInputChanged = (event) => {
-    const number = event.target.value;
-    this.setState({ 
-      numberOfEvents: number,
-    });
-    this.props.updateEventCount(event.target.value);
+    numberOfEvents: 32,
+    infoText: "",
   };
 
   render() {
+    const numberOfEvents = this.state.numberOfEvents;
     return (
-      <div>
-        <p>Limit search results </p><input type="number" id="numberInput" value={this.state.numberOfEvents} className="numberInput" onChange={(e) => this.handleInputChanged(e)} />
+      <div className="numberOfEvents">
+        <input
+          type="text"
+          className="EventsNumber"
+          value={numberOfEvents}
+        />
+
       </div>
     );
   }
 }
-
-
 export default NumberOfEvents;
