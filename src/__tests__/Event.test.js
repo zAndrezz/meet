@@ -1,58 +1,51 @@
 import React from "react";
 import { shallow } from "enzyme";
-import Event from "../Event";
 import { mockData } from "../mock-data";
+import Event from "../Event";
 
 describe("<Event /> component", () => {
-  let EventWrapper;
+  let eventWrapper;
+  let event = mockData[0];
   beforeAll(() => {
-    EventWrapper = shallow(<Event event={mockData[1]} />);
+    eventWrapper = shallow(<Event event={event} />);
   });
 
-  test("Summary is shown", () => {
-    expect(EventWrapper.find(".EventLocation")).toHaveLength(1);
-  });
-
-  test("Location is shown", () => {
-    expect(EventWrapper.find(".EventLocation")).toHaveLength(1);
-  });
-
-  test("Date and timezone are shown", () => {
-    expect(EventWrapper.find(".EventDate")).toHaveLength(1);
-  });
-
-  test("Show more button is rendered", () => {
-    expect(EventWrapper.find(".showMore")).toHaveLength(1);
-  });
-
-  test("change show-state on click", () => {
-    EventWrapper.setState({
-      show: false,
+  test("the element is collapsed by default", () => {
+    eventWrapper.setState({
+      collapsed: true,
     });
-    EventWrapper.find(".showMore").simulate("click");
-    expect(EventWrapper.state("show")).toEqual(true);
+    expect(eventWrapper.find(".extra-details").hasClass("hide")).toEqual(true);
   });
 
-  test("hide details by default", () => {
-    EventWrapper.setState({
-      show: false,
-    });
-    expect(EventWrapper.find(".EventDetails")).toHaveLength(0);
+  test("renders summary in the collapsed event element", () => {
+    expect(eventWrapper.find(".summary")).toHaveLength(1);
   });
 
-  test("show detail on click", () => {
-    EventWrapper.setState({
-      show: false,
-    });
-    EventWrapper.find(".showMore").simulate("click");
-    expect(EventWrapper.find(".EventDetails")).toHaveLength(1);
+  test("renders date in the collapsed event element", () => {
+    expect(eventWrapper.find(".start-date")).toHaveLength(1);
   });
 
-  test("hide details on click", () => {
-    EventWrapper.setState({
-      show: true,
+  test("renders location in the collapsed event element", () => {
+    expect(eventWrapper.find(".location")).toHaveLength(1);
+  });
+
+  test("renders a button to show details", () => {
+    expect(eventWrapper.find(".show-details-btn")).toHaveLength(1);
+  });
+
+  test("clicking on show details button should show extra details", () => {
+    eventWrapper.setState({
+      collapsed: true,
     });
-    EventWrapper.find(".showLess").simulate("click");
-    expect(EventWrapper.find(".EventDetails")).toHaveLength(0);
+    eventWrapper.find(".show-details-btn").simulate("click");
+    expect(eventWrapper.state("collapsed")).toBe(false);
+  });
+
+  test("clicking on hide details button should hide the extra details", () => {
+    eventWrapper.setState({
+      collapsed: false,
+    });
+    eventWrapper.find(".hide-details-btn").simulate("click");
+    expect(eventWrapper.state("collapsed")).toBe(true);
   });
 });
