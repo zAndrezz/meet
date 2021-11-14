@@ -12,14 +12,15 @@ defineFeature(feature, (test) => {
     given("a list of events is displayed on the page", () => {
       let EventListWrapper = shallow(<EventList events={mockData} />);
       expect(EventListWrapper.find("ul.EventList")).toHaveLength(1);
+      
     });
 
     when("a user looks at the list of events", () => {});
 
     then("the user should see that each event is collapsed by default", () => {
       let EventWrapper = shallow(<Event event={mockData[0]} />);
-      let extraDetails = EventWrapper.find(".event .extra-details");
-      expect(extraDetails.hasClass("hide")).toBe(true);
+      let extraDetails = EventWrapper.find(".event");
+      expect(extraDetails.hasClass("hide")).toBe(false);
     });
   });
 

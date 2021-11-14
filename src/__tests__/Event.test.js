@@ -14,7 +14,7 @@ describe("<Event /> component", () => {
     eventWrapper.setState({
       collapsed: true,
     });
-    expect(eventWrapper.find(".extra-details").hasClass("hide")).toEqual(true);
+    expect(eventWrapper.find(".extra-details")).toHaveLength(0);
   });
 
   test("renders summary in the collapsed event element", () => {

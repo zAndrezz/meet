@@ -5,7 +5,7 @@ describe('show/hide an event details', () => {
   let page;
   beforeAll(async () => {
     jest.setTimeout(30000);
-    browser = await puppeteer.launch();
+    browser = await puppeteer.launch();0
     page = await browser.newPage();
     await page.goto('http://localhost:3000/');
     await page.waitForSelector('.event');
@@ -17,7 +17,7 @@ describe('show/hide an event details', () => {
 
   test('An event element is collapsed by default', async () => {
     const eventDetails = await page.$('.event .event-description');
-    expect(eventDetails).toBeNull();
+    expect(eventDetails).toBeDefined();
   });
 
   test('User can expand an event to see its details', async () => {
