@@ -6,7 +6,6 @@ import NumberOfEvents from './NumberOfEvents';
 import { Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import { getEvents, extractLocations } from './api';
-import { InfoAlert, ErrorAlert } from "./Alert";
 import './nprogress.css';
 
 class App extends Component {
@@ -15,8 +14,6 @@ class App extends Component {
     currentLocation: "all",
     locations: [],
     numberOfEvents: 12,
-    errorText: "",
-    infoText: ""
   }
 
   componentDidMount() {
@@ -27,9 +24,11 @@ class App extends Component {
       }
     });
   }
+
   componentWillUnmount(){
     this.mounted = false;
   }
+
   updateEvents = (location) => {
     getEvents().then((events) => {
       const locationEvents = (location === 'all') ?
@@ -42,22 +41,13 @@ class App extends Component {
     });
   }
 
-  updateEventCount = async (e) => {
-    const newVal = e.target.value ? parseInt(e.target.value) : 12;
-
-    if (newVal < 1 || newVal > 12) {
-      await this.setState({
-        errorText: "Please choose a number between 1 and 12",
-      });
-    } else {
-      await this.setState({
-        errorText: "",
-        numberOfEvents: newVal,
-      });
-      this.updateEvents(this.state.currentLocation, this.state.numberOfEvents);
-    }
-  };
-
+  updateEventCount = (eventCount) => {
+    const { currentLocation } = this.state;
+    this.setState({
+      numberOfEvents: eventCount
+    });
+    this.updateEvents(currentLocation, eventCount);
+  }
 
   render() {
     const { locations, events, numberOfEvents } = this.state;
@@ -68,10 +58,7 @@ class App extends Component {
             <CitySearch locations={locations} updateEvents={this.updateEvents} />
           </Col>
           <Col className="NumberInputWrapper" md={6}>
-            <NumberOfEvents 
-            numberOfEvents={numberOfEvents} 
-            updateEventCount={this.updateEventCount} 
-            errorText={this.state.errorText}/>
+            <NumberOfEvents numberOfEvents={numberOfEvents} updateEventCount={this.updateEventCount} />
           </Col>
         </Row>
         <Row>
@@ -83,4 +70,5 @@ class App extends Component {
     );
   }
 }
+
 export default App;
