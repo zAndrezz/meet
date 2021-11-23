@@ -13,7 +13,6 @@ import mockData from './mock-data'
 class App extends Component {
   state = {
     events: [],
-    currentLocation: "all",
     locations: [],
     numberOfEvents: 12,
     showWelcomeScreen: undefined,
