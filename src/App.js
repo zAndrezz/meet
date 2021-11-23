@@ -9,7 +9,7 @@ import WelcomeScreen from './WelcomeScreen';
 import { getEvents, extractLocations, checkToken, getAccessToken } from
 './api';
 import './nprogress.css';
-import { WarningAlert } from './Alert';
+
 class App extends Component {
   state = {
     events: [],
@@ -36,7 +36,15 @@ this.setState({ events, locations: extractLocations(events) });
 });
 }
 }
-
+getData = () => {
+  const { locations, events } = this.state;
+  const data = locations.map((location) => {
+    const number = events.filter((event) => event.location === location).length
+    const city = location.split(', ').shift()
+    return { city, number };
+  })
+  return data;
+};
 
   componentWillUnmount(){
     this.mounted = false;
@@ -63,10 +71,10 @@ this.setState({ events, locations: extractLocations(events) });
   }
 
   render() {
-    if (this.state.showWelcomeScreen === undefined) return <div
-className="App" />
     const { locations, events, numberOfEvents } = this.state;
+    if (this.state.showWelcomeScreen === undefined);
     return (
+      
       <Container className="App">
         <Row>
           <Col className="CitySearchWrapper" md={6}>
@@ -82,7 +90,7 @@ className="App" />
           </Col>
         </Row>
         <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen}
-getAccessToken={() => { getAccessToken() }} />
+         getAccessToken={() => { getAccessToken() }} />
       </Container>
     );
   }

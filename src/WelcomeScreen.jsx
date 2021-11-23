@@ -27,11 +27,11 @@ class="btn-text"
 <b>Sign in with google</b>
 </button>
 </div>
-</div>
+</div><br></br>
 <a
-href="https://YOUR_GITHUB_USERNAME.github.io/meet/privacy.html"
+href="https://zandrezz.github.io/meet/privacy.html"
 rel="nofollow noopener"
->
+><br></br>
 Privacy policy
 </a>
 </div>
