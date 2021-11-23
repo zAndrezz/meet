@@ -6,9 +6,9 @@ import NumberOfEvents from './NumberOfEvents';
 import { Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import WelcomeScreen from './WelcomeScreen';
-import { getEvents, extractLocations, checkToken, getAccessToken } from
-'./api';
+import { getEvents, extractLocations, checkToken, getAccessToken } from './api';
 import './nprogress.css';
+import mockData from './mock-data'
 
 class App extends Component {
   state = {
