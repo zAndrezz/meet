@@ -14,7 +14,7 @@ class EventList extends Component {
           ""
         )}
         <Col md={10} sm={12} className="EventListWrapper">
-          <ul className="EventList">
+          <ul className="EventList Row">
             {events.map((event) => (
               <li
                 className="col-xl-3 col-lg-4 col-md-6 col-sm-12"
