@@ -7,13 +7,15 @@ import { Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import { getEvents, extractLocations } from './api';
 import './nprogress.css';
-
+import { WarningAlert } from './components/Alert';
 class App extends Component {
   state = {
     events: [],
     currentLocation: "all",
     locations: [],
     numberOfEvents: 12,
+    currentLocation: 'all',
+    warningText: 'You are offline!',
   }
 
   componentDidMount() {
@@ -54,6 +56,7 @@ class App extends Component {
     return (
       <Container className="App">
         <Row>
+        { !navigator.onLine ? (<WarningAlert text='You are offline!' />) : (<WarningAlert text=' ' />)}
           <Col className="CitySearchWrapper" md={6}>
             <CitySearch locations={locations} updateEvents={this.updateEvents} />
           </Col>
