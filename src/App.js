@@ -9,7 +9,7 @@ import WelcomeScreen from './WelcomeScreen';
 import { getEvents, extractLocations, checkToken, getAccessToken } from
 './api';
 import './nprogress.css';
-import { WarningAlert } from './components/Alert';
+import { WarningAlert } from './Alert';
 class App extends Component {
   state = {
     events: [],
