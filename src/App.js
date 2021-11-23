@@ -18,7 +18,6 @@ class App extends Component {
     numberOfEvents: 12,
     showWelcomeScreen: undefined,
     currentLocation: 'all',
-    warningText: 'You are offline!',
   }
 
   async componentDidMount() {
@@ -70,7 +69,6 @@ className="App" />
     return (
       <Container className="App">
         <Row>
-        { !navigator.onLine ? (<WarningAlert text='You are offline!' />) : (<WarningAlert text=' ' />)}
           <Col className="CitySearchWrapper" md={6}>
             <CitySearch locations={locations} updateEvents={this.updateEvents} />
           </Col>
