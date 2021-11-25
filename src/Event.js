@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Button } from "react-bootstrap";
-
 class Event extends Component {
   state = {
     collapsed: true,
@@ -48,5 +47,4 @@ class Event extends Component {
     );
   }
 }
-
 export default Event;

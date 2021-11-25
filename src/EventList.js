@@ -7,17 +7,17 @@ class EventList extends Component {
   render() {
     const { events } = this.props;
     return (
-      <Row className="d-flex justify-content-center event-list-row">
+      <Row>
         {!navigator.onLine ? (
           <InfoAlert text="You are offline! You're looking at cached data." />
         ) : (
           ""
         )}
-        <Col md={10} sm={12} className="EventListWrapper">
+        <Col  className="EventListWrapper">
           <ul className="EventList Row">
             {events.map((event) => (
               <li
-                className="col-xl-3 col-lg-4 col-md-6 col-sm-12"
+               
                 key={event.id}
               >
                 <Event event={event} />
